@@ -1,0 +1,89 @@
+"SAITEJAWINDOW"."PUBLIC"."TRANSCTION""SAITEJAWINDOW"."PUBLIC"
+USE SAITEJAWINDOW;
+
+CREATE OR REPLACE TABLE TRANSCTION(
+AMOUNT INT NOT NULL,
+DATE DATE  NOT NULL
+);
+
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(1000,'2020-01-06');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-10,'2020-01-14');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-75,'2020-01-20');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-5,'2020-01-25');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-4,'2020-01-29');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(2000,'2020-03-10');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-75,'2020-03-12');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-20,'2020-01-15');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(40,'2020-01-15');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-50,'2020-01-06');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(200,'2020-10-17');
+INSERT INTO  TRANSCTION(AMOUNT , DATE) VALUES(-200,'2020-10-10');
+
+SELECT * FROM TRANSCTION;
+
+SELECT BALANCE FROM TRANSCTION;
+
+--1st  query
+select 
+   sum(case when(neg_cnt >=3 and  cre_amt<=-100) 
+            then (tot_amt+5) 
+            else (tot_amt) 
+        end)-60 as balance
+   from (select sum(amount) as tot_amt,
+               count(case when(amount<0) then 1 end) as Neg_cnt,
+               sum(case when (amount<0)then amount else 0 end ) as cre_amt
+   from TRANSCTION
+group by extract(month from date));
+
+---2ND QUERY
+
+create table transactions11 like TRANSCTION;
+insert into transactions1 values(1,'2020-06-29'),
+(35,'2020-02-20'),
+(-50,'2020-02-03'),
+(-1,'2020-02-26'),
+(-200,'2020-08-01'),
+(-44,'2020-02-07'),
+(-5,'2020-02-25'),
+(1,'2020-06-29'),
+(1,'2020-06-29'),
+(-100,'2020-12-29')
+(-100,'2020-12-30'),
+(-100,'2020-12-31');
+
+
+select * from transactions1;
+
+
+select 
+   sum(case when(neg_cnt >=3 and  cre_amt<=-100) 
+            then (tot_amt+5) 
+            else (tot_amt) 
+        end)-60 as balance
+   from (select sum(amount) as tot_amt,
+               count(case when(amount<0) then 1 end) as Neg_cnt,
+               sum(case when (amount<0)then amount else 0 end ) as cre_amt
+   from transactions1 
+group by extract(month from date));
+
+
+--3rd query
+
+create table transactions2 like TRANSCTION;
+insert into transactions2 values(6000,'2020-04-03'),
+(5000,'2020-04-02'),
+(4000,'2020-04-01'),
+(3000,'2020-03-01'),
+(2000,'2020-02-01'),
+(1000,'2020-01-01');
+
+select 
+   sum(case when(neg_cnt >=3 and  cre_amt<=-100) 
+            then (tot_amt+5) 
+            else (tot_amt) 
+        end)-60 as balance
+   from (select distinct extract(month from date),
+                sum(amount) over(partition by extract(month from date)) as tot_amt,
+                count(case when(amount<0) then 1 end) over(partition by extract(month from date))as Neg_cnt,
+                sum(case when (amount<0)then amount else 0 end ) over(partition by extract(month from date)) as cre_amt
+       from transactions2);
