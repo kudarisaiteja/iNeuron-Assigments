@@ -1,0 +1,181 @@
+🎯Analyzing Road Safety in the UK
+
+-- Creating the Database
+create database road_safetyUK;
+use road_safetyUK;
+
+-- Creating the Table structures
+
+create table IF NOT exists accidents(
+accident_index varchar(30),
+accident_severity integer
+);
+
+create table vehicles(
+accident_index varchar(30),
+vehicle_code integer);
+
+create table vehicle_types(
+ vehicle_code integer,
+ vehicle_type varchar(50));
+ 
+ -- Loading the Values in the tables 
+ 
+  LOAD DATA INFILE'D:/datasets/Accidents_2015.csv'
+ INTO TABLE accidents
+ FIELDS TERMINATED BY ','
+ ENCLOSED BY '"'
+ LINES TERMINATED BY '\n'
+ IGNORE 1 ROWS
+ (@col1, @dummy, @dummy, @dummy, @dummy, @dummy, @col2, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, 
+ @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, 
+ @dummy, @dummy, @dummy, @dummy)
+ SET accident_index = @col1, accident_severity = @col2;
+ 
+ 
+ LOAD DATA INFILE 'D:/datasets/Vehicles_2015.csv'
+ INTO TABLE vehicles
+ FIELDS TERMINATED BY ','
+ ENCLOSED BY '"'
+ LINES TERMINATED BY '\n'
+ IGNORE 1 ROWS
+ (@col1, @dummy, @col2, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, 
+ @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy) 
+ SET accident_index = @col1, vehicle_code = @col2;
+ 
+ LOAD DATA INFILE 'D:/datasets/vehicle_types.csv'
+ INTO TABLE vehicle_types
+ FIELDS TERMINATED BY ','
+ ENCLOSED BY '"'
+ LINES TERMINATED BY '\n'
+ IGNORE 1 ROWS;
+
+ select count(*) from accidents;
+ select count(*) from vehicles;
+ select count(*) from vehicle_types;
+ 
+ -- Q1. Median Severity value of accidents caused by various motorcycles by sql query
+SET @row_index := -1;
+SELECT AVG(num.severity) as median_value
+FROM (
+    SELECT @row_index:=@row_index + 1 AS row_index, severity
+    FROM (select vt.vehicle_type as veh_type, a.accident_severity as severity
+    from accidents a
+    inner join vehicles v
+    on a.accident_index = v.accident_index
+    inner join vehicle_types vt
+     on v.vehicle_code = vt.vehicle_code
+    where vt.vehicle_type like '%Motorcycle%') as table_severity
+    ORDER BY severity
+  ) AS num
+  WHERE num.row_index 
+  IN (FLOOR(@row_index / 2) , CEIL(@row_index / 2));
+  
+  
+ 
+-- Q2. Accident Severity and Total Accidents per vehicle type
+select vt.vehicle_type, avg(a.accident_severity) as Accident_Severity, count(v.accident_index) as Total_Accidents
+from accidents a 
+inner join vehicles v
+on a.accident_index = v.accident_index
+inner join vehicle_types vt
+on v.vehicle_code = vt.vehicle_code
+group by vt.vehicle_type;
+
+
+-- Q3. Average Severity by vehicle type
+select vt.vehicle_type, avg(a.accident_severity) as Avg_Accident_Severity
+from accidents a 
+inner join vehicles v
+on a.accident_index = v.accident_index
+inner join vehicle_types vt
+on v.vehicle_code = vt.vehicle_code
+group by vt.vehicle_type;
+
+
+
+-- Q4. Average Severity and Total Accidents by Motorcycles
+select count(a.accident_index) as Total_Accidents_by_motorcycles, 
+avg(a.accident_severity) as Average_Accident_Severity_by_motorcycles
+from accidents a 
+inner join vehicles v
+on a.accident_index = v.accident_index
+inner join vehicle_types vt
+on v.vehicle_code = vt.vehicle_code
+where vt.vehicle_type like '%Motorcycle%';
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+🎯Analyzing the World Population
+
+-- Creating the Database
+create database world_factbook;
+use world_factbook;
+
+create table CIA_factbook1(
+country	varchar(100), 
+area integer,
+birth_rate decimal(38,3), 
+death_rate decimal(38,3),
+infant_mortality_rate decimal(38,3),
+internet_users	integer,
+life_exp_at_birth decimal(38,3),	
+maternal_mortality_rate integer,
+net_migration_rate	decimal(38,2),
+population	integer,
+population_growth_rate decimal(38,2)
+);
+
+select * from cia_factbook1;
+
+-- Loading the Values in the Table
+
+LOAD DATA INFILE 'D:\cia_factbook___FSDA 18th Sept 2022.csv'
+INTO TABLE CIA_factbook1
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS 
+(@col1, @col2, @col3, @col4, @col5, @col6, @col7, @col8, @col9, @col10, @col11)
+set country = @col1, 
+area = if(@col2 = 'NA', NULL, @col2), 
+birth_rate = if(@col3 = 'NA', NULL, @col3), 
+death_rate = if(@col4 = 'NA', NULL, @col4),
+infant_mortality_rate = if(@col5 = 'NA', NULL, @col5), 
+internet_users = if(@col6 = 'NA', NULL, @col6), 
+life_exp_at_birth = if(@col7 = 'NA', NULL, @col7),
+maternal_mortality_rate  = if(@col8 = 'NA', NULL, @col8),
+net_migration_rate = if(@col9 = 'NA', NULL, @col9), 
+population = if(@col10 = 'NA', NULL, @col10), 
+population_growth_rate = if(@col11 = 'NA', NULL, @col11);
+			
+
+-- Question1 - country with highest population
+SELECT COUNTRY, POPULATION 
+FROM cia_factbook1
+WHERE POPULATION = (SELECT max(POPULATION)FROM cia_factbook1);
+
+
+-- Question2 - country with lowest population
+select COUNTRY, POPULATION
+from cia_factbook1 
+where POPULATION = 
+(select min(POPULATION) from cia_factbook1);
+
+-- Question3 - country with highest population growth
+SELECT COUNTRY, POPULATION_GROWTH_RATE
+FROM CIA_FACTBOOK1
+WHERE POPULATION_GROWTH_RATE = (SELECT max(POPULATION_GROWTH_RATE) FROM CIA_FACTBOOK1);
+
+
+-- Question4 - Which country has an extraordinary number for the population?
+SELECT COUNTRY, AREA, POPULATION, (POPULATION/AREA) AS POPULATION_NUMBER
+FROM CIA_FACTBOOK1
+ORDER BY (POPULATION/AREA)
+DESC LIMIT 1;
+
+
+-- Question5 - Which is the most densely populated country in the world?
+SELECT COUNTRY, AREA, POPULATION ,(POPULATION/AREA) AS POPULATION_DENSITY
+FROM CIA_FACTBOOK1
+WHERE (POPULATION/AREA) = (SELECT MAX(POPULATION/AREA) FROM CIA_FACTBOOK1);
+
