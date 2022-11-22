@@ -1,0 +1,36 @@
+1.What do you mean by BI? Explain.
+a.Business intelligence (sometimes called descriptive analytics) refers to the processes and tools used to analyze
+ business data, turn it into actionable insights, and helps everyone in 
+ organization to make better-informed or quicker decissions. 
+ 
+b.BI- analyzes current and historical data and presents findingsin easy to digedt reports, dashboards, graphs, charts and maps
+ that can be shared across the company.
+------------------------------------------------------------------------------------------------------------------- 
+ 2.How Power-BI helps in BI, and how does it help Analysts? Explain.
+ 
+ a.Power-BI helps - we will learn the tricks to create attractive and insightful financial reports. We will look at Sales vs. plan performance dashboards, 
+ cost vs. budget analyses, income statements and forecasts.
+
+ b.As a business analyst, you need more than just basic knowledge of building financial reports, whether it's in Power BI or another software.
+
+c.Below you'll learn about the best practices that are being successfully adopted by the world's top companies.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Explain Descriptive analytics?
+   
+   Descriptive analytics isa statistical method that is used to search and summarize historical data in order to identify patterns or meaning.
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------  
+4.Explain Predictive analytics?
+
+Predective analytics is a statistical method that utilizes algorithms and machine learning to identify trends in data and predict future behaviors.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+5.Explain perspective analytics?
+
+Prescriptive analytics is a statistical method used to generate recommendations and make decisions based on the computational findings of algorithmic models.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6.Write five real-life questions that PowerBi can solve.
+a. power bi help to create new measuers in the exiting data.
+b. power bi widely using because it is easy to create custamized visualizations.
+c.with the power bi we can connect a lot of platforms for ex- snowflake, azure, aws. but other visualizations tools have limited connections.
+d.Power bi have power query editor we can solve or use DOX function and create a new columns and tables.
+e. power bi creates pdf files and mobile visuals also, with the help of the feature we can see the final report anywhere without systems.
