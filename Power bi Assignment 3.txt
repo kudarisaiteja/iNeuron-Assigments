@@ -1,0 +1,42 @@
+1.List and explain different PowerBi products?
+a.Microsoft Power BI is a collection of tools used to import, aggregate and present data in the form of immersive and easy-to-digest reports and visuals.
+1. Power BI DESKTOP - a window desktop application for data analysis and reports creation.
+2. PowerBi service - online software as a service, used to collabrate and distrute Power Bi reports.
+3. PowerBimobile - a native mobile app.
+4. power bi report builder - a tool fir creating reports.
+5. Powe report server - an on-premises report server.
+6. PowerBi embedded - a service to embedded visuals, reports, and dashboards into an application.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.What limitations of Excel, Microsoft solved by PowerBi?
+a. Excel has limitations in the amount of data it can work with. In contrast, Power BI can handle much larger amounts of data. Power BI can connect 
+to a large number of data sources, while Excel's connectivity capacity is limited. Also, unlike Excel, Power BI can be easily used from mobile devices.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Explain PowerQuery?
+a. Power Query enables connectivity to a wide range of data sources, including data of all sizes and shapes. Experiences for data connectivity are too fragmented.
+ Consistency of experience, and parity of query capabilities over all data sources. Data often needs to be reshaped before consumption.
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 4. Explain PowerMap?
+ a.  We all have used and inserted the Maps and 3D Maps in MS Excel which is quite complex to implement when we know that the tool which we are using is not meant for creating Map charts. 
+ To overcome such situations, Microsoft has given many such options and functions in Power BI which are not easy to use in MS Excel. Maps are one of those charts in Power BI. Now the question comes,
+ how Power BI detects the locations which we have in our data and plot that into charts? And the answer is, through Bing Maps which is also a Microsoft product. Bing Maps locates the city, 
+ country and region name with the exact name and fill that into Power BI Maps.
+ 
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 5. How powerBi eliminated the need to host SharePoint Server on premises?
+  
+  a.Does the Power BI desktop run on the same server which hosts the SharePoint. If not, are those two servers in the same server and can communicate each other.
+  
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  6. Explain the updates done in Power Bi Service(power BI 2.0) as compared to older version ?
+  a .1.Reverse stack order for stacked column charts.
+     2.Query performance improvements.
+     3.Power BI Metrics 
+  b .analytics - Quick measure suggestions - experimental feature.
+  
+  c.Modeling - 1.Relationship editing in the properties pane preview.
+                2.DAX formula bar support for Power BI Desktop model view.
+
+  d. Data connectivity - Introducing tenant setting for Power BI datamarts (preview).
+  e. Power BI Ideas website enhancements.
