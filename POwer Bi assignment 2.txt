@@ -1,0 +1,57 @@
+1. Explain the advantages of Natural Queries in PowerBi with an example?
+a.Sometimes the fastest way to get an answer from your data is to perform a search over your data using natural language. The Q&A feature in Power BI
+ lets you explore your data in your own words using natural language. Q&A is interactive, even fun. Often, one question leads to others as the visualizations
+ reveal interesting paths to pursue. Asking the question is just the beginning. Travel through your data, refining or expanding your question, uncovering new 
+ information, zeroing in on details, or zooming out for a broader view. The experience is interactive and fast, powered by an in-memory storage.
+ 
+ example- Even before you start typing, Q&A displays a new screen with suggestions to help you form your question. Start either from one of the suggested questions 
+ or type your own questions. Q&A supports a wide range of questions, including but not limited to.
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ 2.Explain Web Front End(WFE) cluster from Power BI Service Architecture?
+
+ a.The Power BI service architecture is based on two clusters – the Web Front End (WFE) cluster and the Back-End cluster. The WFE cluster manages the initial connection
+ and authentication to the Power BI service, and once authenticated.
+ b.The WFE cluster provides the user's browser with the initial HTML page contents on site load, as well as pointers to CDN content used to render the site in the browser.
+ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 3. Explain Back End cluster from Power BI Service Architecture?
+ 
+ a.The Back-End cluster authenticates the clients to interact with the Power BI service. The Back-End cluster manages user dashboards, reports, visualizations, datasets, data storage,
+  data refresh, data connections, and other aspects of interacting with the Power BI service
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  4. What ASP.NET component does in Power BI Service Architecture?
+  a. ASP.NET(Active Server Pages Network Enabled Technologies)  When users attempt to connect to the Power BI service, the client's DNS service may communicate with the Azure Traffic Manager
+   to find the most appropriate (usually nearest) datacenter with a Power BI deployment.
+   
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  5.Compare Microsoft Excel and PowerBi Desktop on the following features:
+a.Data import  - Data import in the PowerBi have a lot of data sources. But in the Excel data import is limited.											
+Data transformation - Both have similar kind of transformations but Power bi has advanced features.
+Modeling - Modeling we can done in Power bi only not in the excel.
+Reporting - reporting we can done by using both but in power bi we have different kinds of visualizations. But in the Excel limited.
+Server Deployment - Power Bi has front and back service deployemnts but excel doent have.
+Convert Models - it is easy to convert models in Power bi but in the excel not possible.
+Cost - Excel is cost effective but PowerBi service it cost the organization.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+6.List 20 data sources supported by Power Bi desktop.
+1. excel workbook.
+2.text/csv.
+3.Sql server analysis services database.
+4. Oracle database.
+5.IBM Db2 database.
+6.MYSQL database.
+7.SAP HANA database.
+8.AWS.
+9.Azure.
+10. Zoho creater.
+11. vena.
+12. witivio(Beta).
+13. Viva insights.
+14.Vessel insights.
+15.Softone Bi
+16. Shortcut Business Insights.
+17.Sumtol.
+18.Azure data bricks.
+19.Bi connector.
+20.R script.
